@@ -4,10 +4,7 @@ Downloads newspapers in Marathi, Hindi, English, Kannada, Gujrati, Bengali etc l
 ## What's this repository about?
 
 It is deployed on heruko and running very well.
-| Email Screen  |
-| ------------- |
-| ![](../master/img/mailscreen.png)  |
-
+[Email Screen](https://github.com/vinodnimbalkar/DailyNewspaperMail/blob/master/img/mailscreen.png)
 
 ## How do I run this project locally?
 

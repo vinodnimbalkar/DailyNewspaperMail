@@ -1,5 +1,5 @@
 # DailyNewspaperMail
-Downloads newspapers in Marathi, Hindi, English, Kannada, Gujrati, Bengali etc languages and save in the path "base directory/newspapername//.pdf". Send mail everyday to certain recipient and delete directory hence hence disk wold be free. It using shcedule to run all these operations for periodically :clock1: at pre-determined intervals.
+Downloads newspapers :newspaper: in Marathi, Hindi, English, Kannada, Gujrati, Bengali etc languages and save in the path "base directory/newspapername//.pdf". Send mail :e-mail: everyday to certain recipient and delete directory hence disk wold be free. It using shcedule to run all these operations for periodically :clock1: at pre-determined intervals.
 
 ## What's this repository about?
 

@@ -1,8 +1,14 @@
 # DailyNewspaperMail
 Downloads newspapers :newspaper: in Marathi, Hindi, English, Kannada, Gujrati, Bengali etc languages and save in the path "base directory/newspapername//.pdf". Send mail :e-mail: everyday to certain recipient and delete directory hence disk wold be free. It using shcedule to run all these operations for periodically :clock1: at pre-determined intervals.
 
-## What's this repository about?
+| Marathi        | English | Hindi  | Gujrati |
+| ---------- |:-------------:| -----:|-----:|
+| लोकमत      | The Hindu | दैनिक भास्कर |  ગુજરાત સમાચાર |
+| सामना       | Indian Express |   अमर उजाला | દિવ્ય ભાસ્કર |
+| महाराष्ट्र टाईम्स | DNA      |    लोकमत समाचार |  |
+| दिव्य मराठी    | Times Of India  | हे भूमी  | |
 
+## What's this repository about?
 It is deployed on heruko and running very well.
 [Email Screen](https://github.com/vinodnimbalkar/DailyNewspaperMail/blob/master/img/mailscreen.png)
 

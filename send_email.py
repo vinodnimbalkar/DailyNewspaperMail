@@ -30,8 +30,8 @@ def lokmat():
     urllib.request.urlretrieve(downloadUrl, path)
     print("Download complete")
 
-def newpaperMail():
-    subject = 'The Hindu Newspaper'
+def newspaperMail():
+    subject = 'The Hindu & Lokmat Newspaper'
 
     msg = MIMEMultipart()
     msg['From'] = email_user
@@ -41,15 +41,16 @@ def newpaperMail():
     body = 'Hi there, sending this email from Python!'
     msg.attach(MIMEText(body,'plain'))
 
-    filename='Hindu/Hindu.pdf'
-    attachment  =open(filename,'rb')
+    filename= ['Hindu/Hindu.pdf','Lokmat/Lokmat.pdf']
+    for f in filename:
+        attachment  =open(filename,'rb')
 
-    part = MIMEBase('application','octet-stream')
-    part.set_payload((attachment).read())
-    encoders.encode_base64(part)
-    part.add_header('Content-Disposition',"attachment; filename= "+filename)
+        part = MIMEBase('application','octet-stream')
+        part.set_payload((attachment).read())
+        encoders.encode_base64(part)
+        part.add_header('Content-Disposition',"attachment; filename= "+filename)
 
-    msg.attach(part)
+        msg.attach(part)
     text = msg.as_string()
     try:
         server = smtplib.SMTP('smtp.mail.yahoo.com',587)
@@ -75,9 +76,11 @@ def deleteLokmat():
         print("Lokmat folder Deleted")
 
 if __name__ == "__main__":
-    sh.every().day.at("08:00").do(theHindu)
-    sh.every().day.at("08:10").do(newpaperMail)
-    sh.every().day.at("08:20").do(deleteHindu)
+    sh.every().day.at("08:10").do(theHindu)
+    sh.every().day.at("08:15").do(lokmat)
+    sh.every().day.at("08:20").do(newspaperMail)
+    sh.every().day.at("08:30").do(deleteHindu)
+    sh.every().day.at("08:31").do(deleteLokmat)
     while True:
         sh.run_pending()
         time.sleep(1)

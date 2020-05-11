@@ -6,14 +6,13 @@ from email.mime.base import MIMEBase
 from email import encoders
 from email.mime.image import MIMEImage
 
-import urllib.request, requests
+import requests
 from bs4 import BeautifulSoup
 from datetime import date
 import pandas as pd
 import random
 
 import os, shutil
-import urllib.request
 from datetime import date
 import schedule as sh
 from time import sleep
@@ -29,46 +28,56 @@ if not os.path.exists('./NewsPapers'):
 def dinVishesh():
     d = date.today().strftime('%d-%B').lstrip("0").replace(" 0", " ").lower()
     #specify the url of dinvishesh website
-    janm = "http://www.dinvishesh.com/{}-janm/".format(d) #जन्म तारखे नुसार 
-    ghatana = "http://www.dinvishesh.com/{}-ghatana/".format(d) #घटने नुसार 
-    mrutyu = "http://www.dinvishesh.com/{}-mrutyu/".format(d) #मृत्यू नुसार
+    janm = f"http://www.dinvishesh.com/{d}-janm/" #जन्म तारखे नुसार 
+    ghatana = f"http://www.dinvishesh.com/{d}-ghatana/" #घटने नुसार 
+    mrutyu = f"http://www.dinvishesh.com/{d}-mrutyu/" #मृत्यू नुसार
    
     #janm
-    page_janm = urllib.request.urlopen(janm)
-    soup = BeautifulSoup(page_janm, 'html.parser')
+    page_janm = requests.get(janm)
+    soup = BeautifulSoup(page_janm.text, 'html.parser')
     vishesh_janm = soup.find('div', class_='td-post-content')
-    data_janm = vishesh_janm.text
+    list_janm = vishesh_janm.find_all('p')
+    data_janm = ' '.join([str(elem.text) for elem in list_janm]) 
+    
     #ghatana
-    page_ghatana = urllib.request.urlopen(ghatana)
-    soup = BeautifulSoup(page_ghatana, 'html.parser')
+    page_ghatana = requests.get(ghatana)
+    soup = BeautifulSoup(page_ghatana.text, 'html.parser')
     vishesh_ghatana = soup.find('div', class_='td-post-content')
-    data_ghatana = vishesh_ghatana.text
+    list_ghatana = vishesh_ghatana.find_all('p')
+    data_ghatana = ' '.join([str(elem.text) for elem in list_ghatana]) 
     #mrutyu
-    page_mrutyu = urllib.request.urlopen(mrutyu)
-    soup = BeautifulSoup(page_mrutyu, 'html.parser')
+    page_mrutyu = requests.get(mrutyu)
+    soup = BeautifulSoup(page_mrutyu.text, 'html.parser')
     vishesh_mrutyu = soup.find('div', class_='td-post-content')
-    data_mrutyu = vishesh_mrutyu.text
+    list_mrutyu = vishesh_mrutyu.find_all('p')
+    data_mrutyu = ' '.join([str(elem.text) for elem in list_mrutyu]) 
     return data_janm, data_ghatana, data_mrutyu
 
 def theHindu():
     print("Download Starting...")
     downloadUrl = url+d+"/Hindu.pdf"
     path = basedir+"/NewsPapers/Hindu.pdf"
-    urllib.request.urlretrieve(downloadUrl, path)
+    r = requests.get(downloadUrl)
+    with open(path, 'wb') as f:
+        f.write(r.content)
     print("Download complete")
 
 def indianExpress():
     print("Download Starting...")
     downloadUrl = url+d+"/Indian%20Express.pdf"
     path = basedir+"/NewsPapers/Indian%20Express.pdf"
-    urllib.request.urlretrieve(downloadUrl, path)
+    r = requests.get(downloadUrl)
+    with open(path, 'wb') as f:
+        f.write(r.content)
     print("Download complete")
 
 def lokmat(): 
     print("Download Starting...")  
     downloadUrl = url+d+"/Lokmat.pdf"
     path = basedir+"/NewsPapers/Lokmat.pdf"
-    urllib.request.urlretrieve(downloadUrl, path)
+    r = requests.get(downloadUrl)
+    with open(path, 'wb') as f:
+        f.write(r.content)
     print("Download complete")
 
 def newspaperMail():
